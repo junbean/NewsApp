@@ -3,11 +3,11 @@ package com.loc.newsapp.domain.usercases
 import com.loc.newsapp.domain.manager.LocalUserManager
 
 class SaveAppEntry(
-    private val localUserManager: LocalUserManager
+    private val localUserManger: LocalUserManager
 ) {
 
     suspend operator fun invoke(){
-        localUserManager.saveAppEntry()
+        localUserManger.saveAppEntry()
     }
 
 }
