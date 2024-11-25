@@ -11,9 +11,7 @@ import com.loc.newsapp.presentation.onboarding.OnBoardingScreen
 import com.loc.newsapp.presentation.onboarding.OnBoardingViewModel
 
 @Composable
-fun NavGraph (
-    startDestination: String
-) {
+fun NavGraph (startDestination: String) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination){
