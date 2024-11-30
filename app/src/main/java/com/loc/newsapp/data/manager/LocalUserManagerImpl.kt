@@ -12,6 +12,14 @@ import com.loc.newsapp.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/*
+    DataStore를 사용해서 로컬 저장소에 데이터를 저장하고 읽는 기능을 구현
+    saveAppEntry() 함수
+        - DataStore의 PreferenceKeys.APP_ENTRY라는 키에 true 값을 저장
+    readAppEntry() 함수
+        -
+*/
+
 class LocalUserManagerImpl(
     private val context: Context
 ) : LocalUserManager {

@@ -42,7 +42,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsApi(): NewsApi {
-        return Retrofit.Builder()
+        return Retrofit
+            .Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
