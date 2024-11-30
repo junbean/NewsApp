@@ -1,9 +1,7 @@
 package com.loc.newsapp
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.loc.newsapp.domain.usercases.app_entry.AppEntryUseCases
@@ -17,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     appEntryUseCases: AppEntryUseCases
-): ViewModel() {
+) : ViewModel() {
     private val _splashCondition = mutableStateOf(true)
     val splashCondition: State<Boolean> = _splashCondition
 
@@ -26,7 +24,7 @@ class MainViewModel @Inject constructor(
 
     init {
         appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
-            _startDestination.value = if(shouldStartFromHomeScreen) {
+            _startDestination.value = if (shouldStartFromHomeScreen) {
                 Route.NewsNavigation.route
             } else {
                 Route.AppStartNavigation.route

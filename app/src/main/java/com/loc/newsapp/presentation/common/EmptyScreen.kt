@@ -13,7 +13,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,7 +38,7 @@ fun EmptyScreen(error: LoadState.Error? = null) {
     }
 
     var icon by remember {
-        mutableStateOf(R.drawable.ic_network_error)
+        mutableIntStateOf(R.drawable.ic_network_error)
     }
 
     if (error == null) {
@@ -53,6 +55,13 @@ fun EmptyScreen(error: LoadState.Error? = null) {
         animationSpec = tween(durationMillis = 1000),
         label = ""
     )
+
+
+    LaunchedEffect(key1 = true) {
+        startAnimation = true
+    }
+
+    EmptyContent(alphaAnim = alphaAnimation, message = message, iconId = icon)
 }
 
 @Composable
