@@ -8,14 +8,18 @@ import com.loc.newsapp.data.local.NewsTypeConvertor
 import com.loc.newsapp.data.manager.LocalUserManagerImpl
 import com.loc.newsapp.data.remote.NewsApi
 import com.loc.newsapp.data.repository.NewsRepositoryImpl
-import com.loc.newsapp.domain.usercases.app_entry.AppEntryUseCases
 import com.loc.newsapp.domain.manager.LocalUserManager
 import com.loc.newsapp.domain.repository.NewsRepository
-import com.loc.newsapp.domain.usercases.news.GetNews
-import com.loc.newsapp.domain.usercases.news.NewsUseCases
+import com.loc.newsapp.domain.usercases.app_entry.AppEntryUseCases
 import com.loc.newsapp.domain.usercases.app_entry.ReadAppEntry
 import com.loc.newsapp.domain.usercases.app_entry.SaveAppEntry
+import com.loc.newsapp.domain.usercases.news.DeleteArticle
+import com.loc.newsapp.domain.usercases.news.GetNews
+import com.loc.newsapp.domain.usercases.news.NewsUseCases
 import com.loc.newsapp.domain.usercases.news.SearchNews
+import com.loc.newsapp.domain.usercases.news.SelectArticle
+import com.loc.newsapp.domain.usercases.news.SelectArticles
+import com.loc.newsapp.domain.usercases.news.UpsertArticle
 import com.loc.newsapp.util.Constants.BASE_URL
 import com.loc.newsapp.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
@@ -59,8 +63,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
+
 
     @Provides
     @Singleton
@@ -69,7 +75,11 @@ object AppModule {
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
-            searchNews = SearchNews(newsRepository)
+            searchNews = SearchNews(newsRepository),
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            selectArticle = SelectArticle(newsRepository)
         )
     }
 
@@ -92,7 +102,4 @@ object AppModule {
     fun provideNewsDao(
         newsDatabase: NewsDatabase
     ): NewsDao = newsDatabase.newsDao
-
-
-
 }
