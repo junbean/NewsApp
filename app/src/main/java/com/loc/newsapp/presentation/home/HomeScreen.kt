@@ -24,13 +24,16 @@ import androidx.paging.compose.LazyPagingItems
 import com.loc.newsapp.R
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.presentation.Dimens.MediumPadding1
-import com.loc.newsapp.presentation.common.ArticleList
+import com.loc.newsapp.presentation.common.ArticlesList
 import com.loc.newsapp.presentation.common.SearchBar
-import com.loc.newsapp.presentation.navgraph.Route
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit,
+) {
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10) {
@@ -64,10 +67,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             text = "",
             readOnly = true,
             onValueChange = {},
-            onClick = {
-                navigate(Route.SearchScreen.route)
-            },
-            onSearch = {}
+            onSearch = {},
+            onClick = navigateToSearch
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
@@ -75,21 +76,21 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
         Text(
             text = titles,
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(start = MediumPadding1)
-                    .basicMarquee(),
+            Modifier
+                .fillMaxWidth()
+                .padding(start = MediumPadding1)
+                .basicMarquee(),
             fontSize = 12.sp,
             color = colorResource(id = R.color.placeholder)
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
-        ArticleList(
+        ArticlesList(
             modifier = Modifier.padding(horizontal = MediumPadding1),
             articles = articles,
-            onClick = {
-                navigate(Route.DetailsScreen.route)
+            onClick = {  article ->
+                navigateToDetails(article)
             }
         )
     }
