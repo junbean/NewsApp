@@ -1,6 +1,5 @@
 package com.loc.newsapp.domain.usercases.news
 
-import com.loc.newsapp.data.local.NewsDao
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.repository.NewsRepository
 

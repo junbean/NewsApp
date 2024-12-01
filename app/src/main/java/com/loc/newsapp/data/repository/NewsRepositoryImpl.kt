@@ -10,12 +10,11 @@ import com.loc.newsapp.data.remote.SearchNewsPagingSources
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
 
 class NewsRepositoryImpl(
     private val newsApi: NewsApi,
     private val newsDao: NewsDao
-): NewsRepository {
+) : NewsRepository {
     override fun getNews(sources: List<String>): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(pageSize = 10),
