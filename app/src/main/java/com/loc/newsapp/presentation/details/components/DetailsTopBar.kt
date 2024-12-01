@@ -5,12 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -26,10 +24,10 @@ import com.loc.newsapp.ui.theme.NewsAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsTopBar(
-    onBrowsingClick:() -> Unit,
-    onShareClick:() -> Unit,
-    onBookmarkClick:() -> Unit,
-    onBackClick:() -> Unit,
+    onBrowsingClick: () -> Unit,
+    onShareClick: () -> Unit,
+    onBookmarkClick: () -> Unit,
+    onBackClick: () -> Unit,
 ) {
     TopAppBar(
         title = { },
@@ -75,7 +73,7 @@ fun DetailsTopBar(
 @Composable
 fun DetailsTopBarPreview() {
     NewsAppTheme {
-        Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)){
+        Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
             DetailsTopBar(
                 onBrowsingClick = { },
                 onShareClick = { },
