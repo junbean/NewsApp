@@ -94,3 +94,11 @@ private fun ShimmerEffect() {
         }
     }
 }
+/*
+when 표현식의 이해
+    - is
+        - 타입 확인용으로 사용
+    - as
+        - 타입 변환용으로 사용
+
+*/
